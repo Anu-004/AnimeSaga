@@ -25,7 +25,7 @@ const About = () => {
           animate={isInView1 ? "visible" : "hidden"}
         >
           <img
-            src="../src/assets/quote.jpg"
+            src="../src/assets/quote.png"
             className="max-w-sm rounded-lg border shadow-2xl shadow-zinc-600"
             alt="Anime"
           />
@@ -46,7 +46,7 @@ const About = () => {
       <div
         className="hero min-h-screen"
         style={{
-          backgroundImage: "url(../src/assets/Logo/anime.webp)",
+          backgroundImage: "url(../src/assets/anime.png)",
         }}
       >
     

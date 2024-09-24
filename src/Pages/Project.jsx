@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import "./project.css";
-import er from "../assets/error.jpg";
+import er from "../assets/error.png";
 
 const Project = () => {
   const [animeName, setAnimeName] = useState("");
@@ -136,7 +136,7 @@ const Project = () => {
                         rel="noopener noreferrer"
                         className="btn btn-primary"
                       >
-                        Learn now!
+                        Know More!
                       </a>
                     </div>
                   </div>
