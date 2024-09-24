@@ -1,234 +1,63 @@
-// // import React, { useEffect, useState } from 'react';
-// // import "./project.css";
-// // function Project() {
-// //   const [animeList, setAnimeList] = useState([]);
-// //   const [loading, setLoading] = useState(true);
+import React, { useState, useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import "./project.css";
+import er from "../assets/error.jpg";
 
-// //   // Fetch anime data from Jikan API
-// //   // useEffect(() => {
-// //   //   fetch('https://api.jikan.moe/v4/anime')
-// //   //     .then((response) => response.json())
-// //   //     .then((data) => {
-// //   //       setAnimeList(data.data); // Set the fetched data
-// //   //       setLoading(false); // Set loading to false after fetching
-// //   //     })
-// //   //     .catch((error) => {
-// //   //       console.error('Error fetching anime data:', error);
-// //   //       setLoading(false);
-// //   //     });
-// //   // }, []);
-
-// //   if (loading) {
-// //     return <span class="loader"></span>
-// //   }
-
-// //   return (
-// //     <div style={styles.container}>
-// //       <h1>Anime List</h1>
-// //       <div style={styles.animeGrid}>
-// //         {animeList.map((anime) => (
-// //           <div key={anime.mal_id} style={styles.animeCard}>
-// //             <img src={anime.images.jpg.large_image_url} alt={anime.title} style={styles.animeImage} />
-// //             <h3>{anime.title}</h3>
-// //           </div>
-// //         ))}
-// //       </div>
-// //     </div>
-// //   );
-// // }
-
-// // // Simple CSS styles
-// // const styles = {
-// //   container: {
-// //     textAlign: 'center',
-// //     marginTop: '20px',
-// //   },
-// //   animeGrid: {
-// //     display: 'grid',
-// //     gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-// //     gap: '20px',
-// //     padding: '20px',
-// //   },
-// //   animeCard: {
-// //     padding: '10px',
-// //     border: '1px solid #ddd',
-// //     borderRadius: '10px',
-// //     boxShadow: '2px 2px 12px rgba(0,0,0,0.1)',
-// //   },
-// //   animeImage: {
-// //     width: '100%',
-// //     borderRadius: '10px',
-// //     height: 'auto',
-// //   },
-// // };
-
-// // export default Project;
-// // -----------------------------------------------------------------------------
-
-
-// import React, { useState, useEffect } from "react";
-// import { motion, useInView } from 'framer-motion';
-
-// const Project = () => {
-//   const [animeName, setAnimeName] = useState(""); // To hold the input value
-//   const [animeData, setAnimeData] = useState([]); // To hold search results
-//   const [randomAnime, setRandomAnime] = useState([]); // To hold random anime on load
-
-//   // Fetch random anime when the component mounts
-//   useEffect(() => {
-//     fetch("https://api.jikan.moe/v4/anime")
-//       .then((response) => response.json())
-//       .then((data) => {
-//         const shuffledAnime = data.data.sort(() => 0.5 - Math.random()); // Shuffle results randomly
-//         setRandomAnime(shuffledAnime.slice(0, 15)); // Limit to 15 results
-//       })
-//       .catch((error) => console.error("Error fetching random anime:", error));
-//   }, []); // Empty dependency array, fetch only when the component loads
-
-//   // Handle search input change
-//   const handleInputChange = (e) => {
-//     setAnimeName(e.target.value);
-//   };
-
-//   // Handle search action (fetching anime by search query)
-//   const handleSearch = () => {
-//     fetch(`https://api.jikan.moe/v4/anime?q=${animeName}`)
-//       .then((response) => response.json())
-//       .then((data) => {
-//         setAnimeData(data.data.slice(0, 15)); // Display only 15 search results
-//       })
-//       .catch((error) => console.error("Error fetching searched anime:", error));
-//   };
-
-//   return (
-//     <div className="flex flex-col items-center gap-4 p-4">
-//       {/* Input for searching anime */}
-//       <input
-//         type="text"
-//         placeholder="Search for an anime"
-//         value={animeName}
-//         onChange={handleInputChange}
-//         className="input input-bordered w-full max-w-xs"
-//       />
-
-//       {/* Button to trigger the search */}
-//       <button className="btn btn-primary" onClick={handleSearch}>
-//         Search
-//       </button>
-
-//       {/* Grid to display either search results or random anime */}
-//       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-//         {/* Check if search results exist, otherwise display random anime */}
-//         {animeData.length > 0
-//           ? animeData.map((anime) => (
-//               <div key={anime.mal_id} className="card glass w-96">
-//                 <figure>
-//                   <img src={anime.images.jpg.image_url} alt={anime.title} />
-//                 </figure>
-//                 <div className="card-body">
-//                   <h2 className="card-title">{anime.title}</h2>
-//                   <p>
-//                     Show Released On:
-//                     {anime.type
-//                       ? ` ${anime.type} in ${anime.year}`
-//                       : "No description available"}
-//                   </p>
-//                   <div className="card-actions justify-end">
-//                     <a
-//                       href={`https://myanimelist.net/anime/${anime.mal_id}`}
-//                       target="_blank"
-//                       rel="noopener noreferrer"
-//                       className="btn btn-primary"
-//                     >
-//                      Know more!
-//                     </a>
-//                   </div>
-//                 </div>
-//               </div>
-//             ))
-//           : randomAnime.map((anime) => (
-//               <div key={anime.mal_id} className="card glass w-96 h-auto">
-//                 <figure>
-//                   <img src={anime.images.jpg.image_url} alt={anime.title} />
-//                 </figure>
-//                 <div className="card-body">
-//                   <h2 className="card-title">{anime.title}</h2>
-//                   <p>
-//                     Show Released On:
-//                     {anime.type
-//                       ? ` ${anime.type} in ${anime.year}`
-//                       : "No description available"}
-//                 </p>
-//                 <p>Duration: {anime.duration}</p>
-//                 <p>Rating: {anime.score}/10</p>
-//                   <div className="card-actions justify-end">
-//                     <a
-//                       href={`https://myanimelist.net/anime/${anime.mal_id}`}
-//                       target="_blank"
-//                       rel="noopener noreferrer"
-//                       className="btn btn-primary"
-//                     >
-//                       Know More
-//                     </a>
-//                   </div>
-//                 </div>
-//               </div>
-//             ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Project;
-// -----------------------------------------------------------
-
-import React, { useState, useEffect } from 'react';
-import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-
-const Project= () => {
-  const [animeName, setAnimeName] = useState('');
+const Project = () => {
+  const [animeName, setAnimeName] = useState("");
   const [animeData, setAnimeData] = useState([]);
-  const [randomAnime, setRandomAnime] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1); // For handling pagination
+  const [totalPages, setTotalPages] = useState(1); // To track total pages from API
+  const [error, setError] = useState(false);
+  const [load, setLoad] = useState(true);
+  const [searchClicked, setSearchClicked] = useState(false);
 
-  // Fetch random anime when the component mounts
+  // Fetch anime based on search or random data
   useEffect(() => {
-    fetch('https://api.jikan.moe/v4/anime')
-      .then((response) => response.json())
-      .then((data) => {
-        const shuffledAnime = data.data.sort(() => 0.5 - Math.random());
-        setRandomAnime(shuffledAnime.slice(0, 15));
-      })
-      .catch((error) => console.error('Error fetching random anime:', error));
-  }, []);
+    const fetchAnimeData = () => {
+      const query = animeName
+        ? `q=${animeName}&page=${currentPage}`
+        : `page=${currentPage}`;
+      fetch(`https://api.jikan.moe/v4/anime?${query}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setAnimeData(data.data.slice(0, 6)); // Show 6 results
+          setTotalPages(data.pagination.last_visible_page); // Update total pages
+        })
+        .catch(() => setError(true))
+        .finally(() => setLoad(false));
+    };
+
+    if (searchClicked || !animeName) {
+      fetchAnimeData();
+    }
+  }, [animeName, currentPage, searchClicked]);
 
   // Handle search input change
   const handleInputChange = (e) => {
     setAnimeName(e.target.value);
+    setCurrentPage(1); // Reset to page 1 on a new search
+    setSearchClicked(false); // Disable search trigger while typing
   };
 
   // Handle search action
   const handleSearch = () => {
-    fetch(`https://api.jikan.moe/v4/anime?q=${animeName}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setAnimeData(data.data.slice(0, 15));
-      })
-      .catch((error) => console.error('Error fetching searched anime:', error));
+    setSearchClicked(true);
   };
 
-  // Scroll reveal animation settings
+  // Scroll reveal animation component
   const RevealCard = ({ children }) => {
     const controls = useAnimation();
     const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.2 });
 
     useEffect(() => {
-      if (inView) {
-        controls.start('visible');
+      if (inView && searchClicked) {
+        controls.start("visible");
       } else {
-        controls.start('hidden');
+        controls.start("hidden");
       }
-    }, [controls, inView]);
+    }, [controls, inView, searchClicked]);
 
     return (
       <motion.div
@@ -245,26 +74,46 @@ const Project= () => {
     );
   };
 
+  // Handle pagination actions
+  const handleNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
   return (
-    <div className="flex flex-col items-center gap-4 p-4">
-      {/* Input for searching anime */}
-      <input
-        type="text"
-        placeholder="Search for an anime"
-        value={animeName}
-        onChange={handleInputChange}
-        className="input input-bordered w-full max-w-xs"
-      />
+    <>
+      {load && <span className="loader"></span>}
+      <div className="flex justify-center items-center h-full">
+        {error && (
+          <img src={er} alt="error" className="object-contain max-w-2xl" />
+        )}
+      </div>
 
-      {/* Button to trigger the search */}
-      <button className="btn btn-primary" onClick={handleSearch}>
-        Search
-      </button>
+      {!load && !error && (
+        <div className="flex flex-col items-center gap-4 p-4">
+          {/* Input for searching anime */}
+          <input
+            type="text"
+            placeholder="Search for an anime"
+            value={animeName}
+            onChange={handleInputChange}
+            className="input input-bordered w-full max-w-xs"
+          />
 
-      {/* Grid to display either search results or random anime */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-        {animeData.length > 0
-          ? animeData.map((anime) => (
+          {/* Button to trigger the search */}
+          <button
+            className="btn  px-6 py-3 bg-gradient-to-r from-purple-600 to-sky-600 text-white font-medium rounded-lg shadow-2xl hover:from-purple-500 hover:to-sky-500 transform hover:scale-105 transition-transform duration-300 ease-in-out"
+            onClick={handleSearch}
+          >
+            Search
+          </button>
+
+          {/* Grid to display either search results or random anime */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+            {animeData.map((anime) => (
               <RevealCard key={anime.mal_id}>
                 <div className="card glass w-96">
                   <figure>
@@ -273,58 +122,49 @@ const Project= () => {
                   <div className="card-body">
                     <h2 className="card-title">{anime.title}</h2>
                     <p>
-                     Show Released On:
-                     {anime.type
-                       ? ` ${anime.type} in ${anime.year}`
-                       : "No description available"}
-                 </p>
-
-                      < p > Duration: {anime.duration}</p>
-               <p>Rating: {anime.score}/10</p>                    <div className="card-actions justify-end">
+                      Show Released On:
+                      {anime.type
+                        ? ` ${anime.type} in ${anime.year}`
+                        : "No description available"}
+                    </p>
+                    <p>Duration: {anime.duration}</p>
+                    <p>Rating: {anime.score}/10</p>
+                    <div className="card-actions justify-end">
                       <a
                         href={`https://myanimelist.net/anime/${anime.mal_id}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn-primary"
                       >
-                        Know more
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </RevealCard>
-            ))
-          : randomAnime.map((anime) => (
-              <RevealCard key={anime.mal_id}>
-                <div className="card glass w-96">
-                  <figure>
-                    <img src={anime.images.jpg.image_url} alt={anime.title} />
-                  </figure>
-                  <div className="card-body">
-                    <h2 className="card-title">{anime.title}</h2>
-                    <p>
-                     Show Released On:
-                     {anime.type
-                       ? ` ${anime.type} in ${anime.year}`
-                       : "No description available"}
-                 </p>
-                 <p>Duration: {anime.duration}</p>
-                <p>Rating: {anime.score}/10</p>                    <div className="card-actions justify-end">
-                      <a
-                        href={`https://myanimelist.net/anime/${anime.mal_id}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn-primary"
-                      >
-                        Know more!
+                        Learn now!
                       </a>
                     </div>
                   </div>
                 </div>
               </RevealCard>
             ))}
-      </div>
-    </div>
+          </div>
+
+          {/* Pagination Buttons */}
+          <div className="join grid grid-cols-2 mt-8">
+            <button
+              className="join-item btn btn-outline"
+              onClick={handlePreviousPage}
+              disabled={currentPage === 1} // Disable if on the first page
+            >
+              Previous page
+            </button>
+            <button
+              className="join-item btn btn-outline"
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages} // Disable if on the last page
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

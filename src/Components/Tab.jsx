@@ -1,4 +1,4 @@
-import { NavLink, Routes, Route } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import ThemeChanger from "./ThemeChanger";
 
 const Tab = () => {
@@ -7,20 +7,22 @@ const Tab = () => {
       {/* Navbar */}
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">AnimeSaga</a>
+          <a href="/" className="btn btn-ghost text-2xl text-sky-600">
+            AnimeSaga
+          </a>
         </div>
 
-        <div className="flex-none">
+        <div className="flex-none ">
           {/* Tab navigation */}
-          <div role="tablist" className="tabs tabs-lifted">
+          <div role="tablist" className="tabs tabs-lifted mr-4">
             <NavLink
-              to="/about"
+              to="/"
               role="tab"
               className={({ isActive }) =>
                 `tab ${
                   isActive
-                    ? "tab-active text-pink-500 [--tab-bg:black] [--tab-border-color:pink]"
-                    : ""
+                    ? "tab-active text-sky-300 [--tab-bg:black] [--tab-border-color:blue] font-normal"
+                    : "font-bold"
                 }`
               }
             >
@@ -32,12 +34,12 @@ const Tab = () => {
               className={({ isActive }) =>
                 `tab ${
                   isActive
-                    ? "tab-active text-pink-500 [--tab-bg:black] [--tab-border-color:pink]"
-                    : ""
+                    ? "tab-active text-sky-300 [--tab-bg:black] [--tab-border-color:blue] font-normal"
+                    : "font-bold"
                 }`
               }
             >
-              Projects
+              Anime Hunt
             </NavLink>
             <NavLink
               to="/skills"
@@ -45,8 +47,8 @@ const Tab = () => {
               className={({ isActive }) =>
                 `tab ${
                   isActive
-                    ? "tab-active text-blue-100 [--tab-bg:black] [--tab-border-color:blue]"
-                    : ""
+                    ? "tab-active text-sky-300 [--tab-bg:black] [--tab-border-color:blue] font-normal"
+                    : "font-bold"
                 }`
               }
             >

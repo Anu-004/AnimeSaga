@@ -9,6 +9,8 @@ const App = () => {
     <>
       {/* Include the Tab.jsx (Navbar) at the top */}
       <Tab />
+
+      
       {/* Outlet will render the component for the current route */}
       <div className="p-4">
         <Outlet />
