@@ -1,11 +1,11 @@
-import html from "../assets/Logo/html.png";
-import css from "../assets/Logo/css.png";
-import framer from "../assets/Logo/framer.webp";
-import js from "../assets/Logo/js.png";
-import react from "../assets/Logo/react.png";
-import tailwind from "../assets/Logo/tailwind.png";
-import vite from "../assets/Logo/vite.png";
-import daisy from "../assets/Logo/daisy.png";
+import html from "../assets/html.png";
+import css from "../assets/css.png";
+import framer from "../assets/framer.webp";
+import js from "../assets/js.png";
+import react from "../assets/react.png";
+import tailwind from "../assets/tailwind.png";
+import vite from "../assets/vite.png";
+import daisy from "../assets/daisy.png";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 const Skills = () => {

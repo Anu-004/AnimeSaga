@@ -1,6 +1,5 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-
 const About = () => {
   const ref1 = useRef(null);
   const ref2 = useRef(null);
@@ -37,7 +36,7 @@ const About = () => {
               your journey into the vibrant world of Japanese animation,
               AnimeSaga has something for everyone.
             </p>
-            <button className="btn btn-primary">Get Started</button>
+           <a href='/projects'> <button className="btn btn-primary">Get Started</button></a>
           </div>
         </motion.div>
       </div>
@@ -46,7 +45,7 @@ const About = () => {
       <div
         className="hero min-h-screen"
         style={{
-          backgroundImage: "url(../src/assets/anime.png)",
+          backgroundImage: "url(../src/assets/anime.webp)",
         }}
       >
     

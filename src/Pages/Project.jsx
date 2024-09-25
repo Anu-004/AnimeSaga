@@ -22,16 +22,33 @@ const Project = () => {
       fetch(`https://api.jikan.moe/v4/anime?${query}`)
         .then((response) => response.json())
         .then((data) => {
-          setAnimeData(data.data.slice(0, 6)); // Show 6 results
-          setTotalPages(data.pagination.last_visible_page); // Update total pages
+          // setAnimeData(data.data.slice(0, 6)); // Show 6 results
+          // setTotalPages(data.pagination.last_visible_page); // Update total pages
+          if (data.data && data.data.length > 0) {
+            setAnimeData(data.data.slice(0, 6)); // Show 6 results
+            setTotalPages(data.pagination.last_visible_page); // Update total pages
+            setError(false); // Clear any previous errors
+          } else {
+            setAnimeData([]); // Clear previous results
+            setError(true); // No results found
+          }
         })
         .catch(() => setError(true))
         .finally(() => setLoad(false));
     };
 
-    if (searchClicked || !animeName) {
-      fetchAnimeData();
-    }
+    // if (searchClicked || !animeName) {
+    //   fetchAnimeData();
+    // }
+      // Fetch anime data by default on load (random anime)
+      if (!searchClicked && !animeName) {
+        fetchAnimeData(); // Fetch default data
+      }
+  
+      // Fetch anime when search is clicked
+      if (searchClicked && animeName) {
+        fetchAnimeData(); // Fetch search results
+      }
   }, [animeName, currentPage, searchClicked]);
 
   // Handle search input change

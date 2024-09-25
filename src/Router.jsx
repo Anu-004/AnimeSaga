@@ -27,5 +27,4 @@ const route = createBrowserRouter([
 const Router = () => {
     return <RouterProvider router={route} />
 }
-
 export default Router
