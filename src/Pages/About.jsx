@@ -45,7 +45,7 @@ const About = () => {
           </div>
         </motion.div>
       </div>
-      <img src={anime} alt=""></img>
+      {/* <img src={anime} alt=""></img> */}
       <div
         className="hero min-h-screen"
         style={{
