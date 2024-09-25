@@ -15,6 +15,11 @@ const About = () => {
 
   return (
     <>
+        <img
+            src="../src/assets/react.png"
+            className="max-w-sm rounded-lg border shadow-2xl shadow-zinc-600"
+            alt="react"
+          />
       <div className="hero min-h-screen">
         <motion.div
           ref={ref1}
@@ -23,11 +28,7 @@ const About = () => {
           initial="hidden"
           animate={isInView1 ? "visible" : "hidden"}
         >
-          <img
-            src="../src/assets/react.png"
-            className="max-w-sm rounded-lg border shadow-2xl shadow-zinc-600"
-            alt="Anime"
-          />
+        
           <div>
             <h1 className="text-5xl font-bold">About AnimeSaga</h1>
             <p className="py-6 font-semibold">
