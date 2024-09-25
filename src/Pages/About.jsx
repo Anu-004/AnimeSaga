@@ -48,7 +48,7 @@ const About = () => {
       <div
         className="hero min-h-screen"
         style={{
-          backgroundImage: "url(../src/assets/vite.png)",
+          backgroundImage: `url(${anime})`,
         }}
       >
     
