@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import anime from "../assets/anime.webp"
 const About = () => {
   const ref1 = useRef(null);
   const ref2 = useRef(null);
@@ -15,6 +16,7 @@ const About = () => {
 
   return (
     <>
+      <img src={anime} alt="" />
         <img
             src="../src/assets/react.png"
             className="max-w-sm rounded-lg border shadow-2xl shadow-zinc-600"
