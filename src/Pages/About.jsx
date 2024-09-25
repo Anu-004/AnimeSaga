@@ -24,7 +24,7 @@ const About = () => {
           animate={isInView1 ? "visible" : "hidden"}
         >
           <img
-            src="../src/assets/quote.png"
+            src="../src/assets/react.png"
             className="max-w-sm rounded-lg border shadow-2xl shadow-zinc-600"
             alt="Anime"
           />
