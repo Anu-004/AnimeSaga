@@ -46,7 +46,7 @@ const About = () => {
       <div
         className="hero min-h-screen"
         style={{
-          backgroundImage: "url(../src/assets/anime.webp)",
+          backgroundImage: "url(../src/assets/vite.png)",
         }}
       >
     
