@@ -5,8 +5,8 @@ const ThemeChanger = () => {
   const [theme, setTheme] = useState("light")
 
   const toggleTheme = () => {
-    setTheme(event.target.checked ? "dark" : "light")
-    document.documentElement.setAttribute("data-theme", event.target.checked ? "dark" : "light")
+    setTheme(e.target.checked ? "dark" : "light")
+    document.documentElement.setAttribute("data-theme", e.target.checked ? "dark" : "light")
   }
   return (
     <div className="ml-5">

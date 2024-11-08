@@ -40,7 +40,8 @@ const About = () => {
             </p>
             <a href="/projects">
               {" "}
-              <button className="btn btn-primary">Get Started</button>
+              <button             className="btn  px-6 py-3 bg-gradient-to-r from-purple-600 to-sky-600 text-white font-medium rounded-lg shadow-2xl hover:from-purple-500 hover:to-sky-500 transform hover:scale-105 transition-transform duration-300 ease-in-out"
+              >Get Started</button>
             </a>
           </div>
         </motion.div>
