@@ -5,7 +5,7 @@ import er from "../assets/error.png";
 
 const Project = () => {
   const [animeName, setAnimeName] = useState("");
-  const [searchClicked, setSearchClicked] = useState(true); // Default to true
+  const [searchClicked, setSearchClicked] = useState(true);
   const [animeData, setAnimeData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -30,14 +30,16 @@ const Project = () => {
     }
   };
 
-  // Fetch data when search is clicked, name changes, or page changes
   useEffect(() => {
-    if (searchClicked) fetchAnimeData();
-  }, [searchClicked, currentPage]);
-// animeName,
+    if (searchClicked || currentPage > 1) {
+      fetchAnimeData();
+      setSearchClicked(false); // Reset searchClicked after fetching
+    }
+  }, [searchClicked, animeName, currentPage]);
 
   const handleSearch = () => {
-    setSearchClicked(true); // Enable fetching on search
+    setSearchClicked(true);
+
     setCurrentPage(1); // Reset to the first page on a new search
   };
 
@@ -56,11 +58,11 @@ const Project = () => {
             type="text"
             value={animeName}
             onChange={(e) => setAnimeName(e.target.value)}
-            placeholder="Search Anime"
+            placeholder="Search for an Anime"
             className="input input-bordered w-full max-w-xs"
           />
           <button
-            className="btn  px-6 py-3 bg-gradient-to-r from-purple-600 to-sky-600 text-white font-medium rounded-lg shadow-2xl hover:from-purple-500 hover:to-sky-500 transform hover:scale-105 transition-transform duration-300 ease-in-out"
+            className="btn px-6 py-3 bg-gradient-to-r from-purple-600 to-sky-600 text-white font-medium rounded-lg shadow-2xl hover:from-purple-500 hover:to-sky-500 transform hover:scale-105 transition-transform duration-300 ease-in-out"
             onClick={handleSearch}
           >
             Search
@@ -98,24 +100,24 @@ const Project = () => {
               </div>
             ))}
           </div>
-     
 
-      <div className="join grid grid-cols-2 mt-8">
-        <button
-          className="join-item btn btn-outline"
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          Previous
-        </button>
-        <button
-          className="join-item btn btn-outline"
-          disabled={currentPage === totalPages}
-          onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          Next
-        </button>
-      </div>   </div>
+          <div className="join grid grid-cols-2 mt-8">
+            <button
+              className="join-item btn btn-outline"
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(currentPage - 1)}
+            >
+              Previous
+            </button>
+            <button
+              className="join-item btn btn-outline"
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(currentPage + 1)}
+            >
+              Next
+            </button>
+          </div>
+        </div>
       )}
     </>
   );
